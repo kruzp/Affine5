@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://affine.studio/sitemap.xml
+Sitemap: https://affinewebstudio.com/sitemap.xml
