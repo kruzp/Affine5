@@ -1,0 +1,567 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Affine Studio — See your website before you pay</title>
+<meta name="description" content="Affine designs websites for local service businesses. Answer a few questions, see your finished site in 1–3 days, and pay only if you love it.">
+<link rel="canonical" href="https://affine.studio/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Affine Studio">
+<meta property="og:title" content="We build your website first. You pay only if you love it.">
+<meta property="og:description" content="Websites for local service businesses. See your finished site in 1 to 3 days, before you pay anything.">
+<meta property="og:url" content="https://affine.studio/">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<script>
+/* Light/dark switch. Follows the device setting until the visitor picks one, then remembers it. */
+(function(){
+  var KEY='affine-theme', root=document.documentElement;
+  try{var saved=localStorage.getItem(KEY); if(saved==='light'||saved==='dark') root.setAttribute('data-theme',saved);}catch(e){}
+  var mq=window.matchMedia?matchMedia('(prefers-color-scheme: dark)'):null;
+  function current(){return root.getAttribute('data-theme')||(mq&&mq.matches?'dark':'light')}
+  function paint(){
+    var t=current(), sw=document.querySelector('.theme-switch'); if(!sw)return;
+    sw.setAttribute('data-on',t);
+    sw.querySelectorAll('[data-theme-set]').forEach(function(b){b.setAttribute('aria-checked',b.getAttribute('data-theme-set')===t?'true':'false')});
+    var m=document.querySelector('meta[name="theme-color"]'); if(m)m.setAttribute('content',t==='dark'?'#1C1A17':'#ECE3CC');
+  }
+  document.addEventListener('DOMContentLoaded',function(){
+    var sw=document.querySelector('.theme-switch'); if(!sw)return;
+    sw.addEventListener('click',function(e){
+      var b=e.target.closest('[data-theme-set]'); if(!b)return;
+      var t=b.getAttribute('data-theme-set'); root.setAttribute('data-theme',t);
+      try{localStorage.setItem(KEY,t)}catch(err){}
+      paint();
+    });
+    sw.addEventListener('keydown',function(e){
+      if(e.key!=='ArrowLeft'&&e.key!=='ArrowRight')return; e.preventDefault();
+      var t=current()==='dark'?'light':'dark'; var b=sw.querySelector('[data-theme-set="'+t+'"]'); b.click(); b.focus();
+    });
+    if(mq&&mq.addEventListener)mq.addEventListener('change',paint);
+    paint();
+  });
+})();
+</script>
+</head>
+<body>
+
+<!-- shared print inks: halftone screens and arrowheads -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <pattern id="dots" width="6" height="6" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="1.5" fill="#1F1D1A"/></pattern>
+    <pattern id="dots-cream" width="6" height="6" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="1.4" fill="#EFE5CD"/></pattern>
+    <pattern id="dots-fine" width="4" height="4" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#1F1D1A"/></pattern>
+    <marker id="ah-cream" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#EFE5CD"/></marker>
+    <marker id="ah-ink" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#1F1D1A"/></marker>
+    <marker id="ah-mustard" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#D8B86A"/></marker>
+    <symbol id="mark" viewBox="0 0 40 40">
+      <circle cx="20" cy="20" r="19" fill="#2E6E6B"/>
+      <polygon points="9,29 22,29 31,11 18,11" fill="#1F1D1A"/>
+      <polygon points="9,29 22,29 22,11 9,11" fill="none" stroke="#EFE5CD" stroke-width="1.6" stroke-dasharray="2.4 2"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Affine Studio, home">
+      <svg class="mark" aria-hidden="true"><use href="#mark"/></svg>
+      <span class="d">Affine</span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="#how">How it works</a>
+      <a href="#plans">Plans</a>
+      <a href="#work">Work</a>
+      <a href="#questions">Questions</a>
+      <div class="theme-switch" role="radiogroup" aria-label="Color theme" data-on="light">
+        <button type="button" role="radio" aria-checked="true" data-theme-set="light" aria-label="Light">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="4" fill="currentColor"/><path d="M10 1.5v2.5M10 16v2.5M1.5 10H4M16 10h2.5M4 4l1.8 1.8M14.2 14.2L16 16M4 16l1.8-1.8M14.2 5.8L16 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+        <button type="button" role="radio" aria-checked="false" data-theme-set="dark" aria-label="Dark">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M15.5 12.6A6.8 6.8 0 0 1 7.4 4.5a6.8 6.8 0 1 0 8.1 8.1z" fill="currentColor"/></svg>
+        </button>
+        <span class="thumb" aria-hidden="true"></span>
+      </div>
+      <a class="btn" href="#start"><span class="long">Get my free preview</span><span class="short">Free preview</span></a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap">
+      <div class="hero-text">
+        <h1 class="d" id="hero-title">We build your website first. You pay only if you love it.</h1>
+        <p class="lede">Affine designs websites for local service businesses. Answer a few questions, see your finished site in 1 to 3 days, and go live the same week.</p>
+        <div class="hero-actions">
+          <a class="btn" href="#start">Get my free preview</a>
+          <a class="textlink" href="#how">How it works</a>
+        </div>
+        <p class="hero-price"><strong>Preview is free.</strong> $250 to launch, first month of care free, then from $49 a month. Hosting, changes and upkeep included.</p>
+      </div>
+
+      <div class="hero-cover">
+        <div class="cover c-teal" role="img" aria-label="Book cover illustration: a rough sketch of a page settles into a finished website.">
+          <div class="cover-top">
+            <span class="roundel" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 40 40"><polygon points="9,29 22,29 31,11 18,11" fill="#1F1D1A"/></svg></span>
+            <span class="series">An Affine book</span>
+          </div>
+          <div class="art">
+            <svg viewBox="0 0 400 440" aria-hidden="true">
+              <!-- the sketch: your answers, sheared -->
+              <text x="36" y="44" fill="#EFE5CD" font-family="Libre Caslon Text, Georgia, serif" font-style="italic" font-size="17">your answers</text>
+              <g transform="translate(46 60) skewX(-16)" stroke="#EFE5CD" stroke-width="2" fill="none" stroke-dasharray="6 6">
+                <rect width="170" height="220"/>
+                <path d="M18 34h96M18 66h132M18 84h112M18 102h124M18 150h60"/>
+              </g>
+              <path d="M58 300C66 368 118 384 160 372" fill="none" stroke="#EFE5CD" stroke-width="2.5" marker-end="url(#ah-cream)"/>
+              <!-- the finished page -->
+              <g transform="translate(176 138)">
+                <g class="settle">
+                  <rect x="12" y="12" width="190" height="244" fill="url(#dots)"/>
+                  <g class="mis">
+                    <rect width="190" height="244" fill="#EFE5CD"/>
+                    <rect width="190" height="42" fill="#D8B86A"/>
+                    <rect x="16" y="124" width="158" height="68" fill="#3E6A93"/>
+                    <circle cx="140" cy="158" r="20" fill="#D8B86A"/>
+                    <rect x="16" y="208" width="74" height="22" fill="#4A7049"/>
+                  </g>
+                  <g fill="none" stroke="#1F1D1A" stroke-width="3">
+                    <rect width="190" height="244"/>
+                    <path d="M0 42h190"/>
+                    <rect x="16" y="124" width="158" height="68" stroke-width="2"/>
+                    <rect x="16" y="208" width="74" height="22" stroke-width="2"/>
+                  </g>
+                  <circle cx="22" cy="21" r="8" fill="#1F1D1A"/>
+                  <path d="M120 21h54" stroke="#1F1D1A" stroke-width="4"/>
+                  <rect x="16" y="58" width="116" height="12" fill="#1F1D1A"/>
+                  <path d="M16 84h156M16 96h138M16 108h148" stroke="#1F1D1A" stroke-width="4"/>
+                </g>
+              </g>
+              <text x="236" y="428" fill="#EFE5CD" font-family="Libre Caslon Text, Georgia, serif" font-style="italic" font-size="17">your website</text>
+            </svg>
+          </div>
+          <h3>Your Website</h3>
+          <p class="sub">and the few questions that shape it</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="band" id="how" aria-labelledby="how-title">
+    <div class="wrap">
+      <div class="head">
+        <h2 class="d" id="how-title">Five steps. Most of them are ours.</h2>
+        <p class="lede">Your part takes about ten minutes. Then it is built and refined.</p>
+      </div>
+
+      <ol class="shelf">
+        <li class="book">
+          <div class="cover c-sand">
+            <div class="cover-top"><span class="roundel">1</span><span class="series">Affine</span></div>
+            <div class="art" aria-hidden="true">
+              <svg viewBox="0 0 200 170">
+                <rect x="24" y="48" width="154" height="100" fill="url(#dots)"/>
+                <g class="mis"><polygon points="30,40 172,40 172,140 18,140 18,52" fill="#EFE5CD"/></g>
+                <polygon points="30,40 172,40 172,140 18,140 18,52" fill="none" stroke="#1F1D1A" stroke-width="2.5"/>
+                <path fill="#1F1D1A" d="M32 58h6v11h-6zM60 58h6v11h-6zM116 58h6v11h-6zM46 76h6v11h-6zM88 76h6v11h-6zM144 76h6v11h-6zM32 94h6v11h-6zM74 94h6v11h-6zM102 94h6v11h-6zM158 94h6v11h-6zM60 112h6v11h-6zM130 112h6v11h-6zM88 112h6v11h-6z"/>
+                <path d="M32 132h136" stroke="#1F1D1A" stroke-width="1.5" stroke-dasharray="2 4"/>
+              </svg>
+            </div>
+            <h3>Tell us about your business</h3>
+            <p class="sub">a few questions, ten minutes</p>
+          </div>
+          <p class="caption">We send you a short list of questions about your business, or answer the form on this page and avoid the call.</p>
+        </li>
+
+        <li class="book">
+          <div class="cover c-sea">
+            <div class="cover-top"><span class="roundel">2</span><span class="series">Affine</span></div>
+            <div class="art" aria-hidden="true">
+              <svg viewBox="0 0 200 170">
+                <g class="mis">
+                  <rect x="40" y="52" width="120" height="20" fill="#D8B86A"/>
+                  <rect x="52" y="82" width="60" height="40" fill="#2E6E6B"/>
+                  <rect x="118" y="82" width="30" height="16" fill="#EFE5CD"/>
+                  <rect x="118" y="6" width="30" height="16" fill="#D8B86A"/>
+                </g>
+                <rect x="40" y="52" width="120" height="112" fill="none" stroke="#EFE5CD" stroke-width="2.5"/>
+                <rect x="118" y="104" width="30" height="16" fill="none" stroke="#EFE5CD" stroke-width="2" stroke-dasharray="4 3"/>
+                <path d="M52 134h96M52 146h70" stroke="#EFE5CD" stroke-width="5"/>
+                <path d="M133 28V94" stroke="#EFE5CD" stroke-width="2" stroke-dasharray="4 4" marker-end="url(#ah-cream)"/>
+                <rect x="118" y="6" width="30" height="16" fill="none" stroke="#1F1D1A" stroke-width="2"/>
+              </svg>
+            </div>
+            <h3>We build your site</h3>
+            <p class="sub">in one to three days</p>
+          </div>
+          <p class="caption">We write the words, design the pages, and put it all together for you.</p>
+        </li>
+
+        <li class="book">
+          <div class="cover c-stock">
+            <div class="cover-top"><span class="roundel">3</span><span class="series">Affine</span></div>
+            <div class="art" aria-hidden="true">
+              <svg viewBox="0 0 200 170">
+                <rect x="38" y="44" width="140" height="112" fill="url(#dots)"/>
+                <g class="mis">
+                  <rect x="30" y="36" width="140" height="112" fill="#EFE5CD"/>
+                  <circle cx="100" cy="98" r="34" fill="#2E6E6B"/>
+                </g>
+                <rect x="30" y="36" width="140" height="112" fill="none" stroke="#1F1D1A" stroke-width="3"/>
+                <rect x="30" y="36" width="140" height="16" fill="#1F1D1A"/>
+                <circle cx="40" cy="44" r="2.6" fill="#EFE5CD"/><circle cx="49" cy="44" r="2.6" fill="#EFE5CD"/><circle cx="58" cy="44" r="2.6" fill="#EFE5CD"/>
+                <path d="M84 98l12 12l22-26" fill="none" stroke="#EFE5CD" stroke-width="7" stroke-linecap="square"/>
+              </svg>
+            </div>
+            <h3>See it, free</h3>
+            <p class="sub">no payment, no pressure</p>
+          </div>
+          <p class="caption">You get a private link to your finished site. If it isn't right, you don't owe us a penny.</p>
+        </li>
+
+        <li class="book">
+          <div class="cover c-green">
+            <div class="cover-top"><span class="roundel">4</span><span class="series">Affine</span></div>
+            <div class="art" aria-hidden="true">
+              <svg viewBox="0 0 200 170">
+                <g class="mis"><path d="M100 104L100 40A64 64 0 0 1 155 72Z" fill="#D8B86A"/></g>
+                <path d="M100 104L100 40A64 64 0 0 1 155 72Z" fill="url(#dots-fine)" opacity=".35"/>
+                <g fill="none" stroke="#EFE5CD" stroke-width="2">
+                  <circle cx="100" cy="104" r="20"/>
+                  <circle cx="100" cy="104" r="42"/>
+                  <circle cx="100" cy="104" r="64"/>
+                </g>
+                <path d="M100 104V40" stroke="#1F1D1A" stroke-width="2.5"/>
+                <circle cx="100" cy="104" r="6" fill="#EFE5CD"/>
+                <rect x="134" y="58" width="8" height="8" fill="#2E6E6B" stroke="#1F1D1A" stroke-width="1.5"/>
+                <rect x="52" y="128" width="8" height="8" fill="#2E6E6B" stroke="#1F1D1A" stroke-width="1.5"/>
+                <rect x="146" y="118" width="8" height="8" fill="#2E6E6B" stroke="#1F1D1A" stroke-width="1.5"/>
+              </svg>
+            </div>
+            <h3>Go live</h3>
+            <p class="sub">the same week</p>
+          </div>
+          <p class="caption">Say yes and your site goes live on your own web address, set up so people can find you on Google.</p>
+        </li>
+
+        <li class="book">
+          <div class="cover c-black">
+            <div class="cover-top"><span class="roundel">5</span><span class="series">Affine</span></div>
+            <div class="art" aria-hidden="true">
+              <svg viewBox="0 0 200 190">
+                <circle cx="100" cy="95" r="30" fill="url(#dots-cream)"/>
+                <path d="M100 40A55 55 0 1 1 52 68" fill="none" stroke="#D8B86A" stroke-width="5" marker-end="url(#ah-mustard)"/>
+                <path stroke="#EFE5CD" stroke-width="2.5" d="M100 31V23M132 39.6L136 32.6M155.4 63L162.4 59M164 95H172M155.4 127L162.4 131M132 150.4L136 157.4M100 159V167M68 150.4L64 157.4M44.6 127L37.6 131M36 95H28M44.6 63L37.6 59M68 39.6L64 32.6"/>
+                <circle cx="155" cy="95" r="8" fill="#2E6E6B" stroke="#EFE5CD" stroke-width="2"/>
+              </svg>
+            </div>
+            <h3>We look after it</h3>
+            <p class="sub">every month after</p>
+          </div>
+          <p class="caption">Changes, updates, security and a short monthly report. Just text us what you need.</p>
+        </li>
+      </ol>
+      <p class="swipe">Swipe to see all five steps.</p>
+    </div>
+  </section>
+
+  <!-- MONTHLY CARE -->
+  <section class="band" id="care" aria-labelledby="care-title">
+    <div class="wrap">
+      <div class="head">
+        <h2 class="d" id="care-title">What your monthly plan covers</h2>
+        <p class="lede">Every plan includes all of this. You run your business; we keep the website working for it.</p>
+      </div>
+      <div class="care">
+        <div class="care-panel" role="img" aria-label="Illustration: a steady signal, one pulse for each month of the year.">
+          <div class="top-line">
+            <span class="roundel" style="box-shadow:0 0 0 3px #1F1D1A">12</span>
+            <span class="series" style="font-family:var(--display);font-variation-settings:'wdth' 75;font-weight:700;font-size:14px">Affine</span>
+          </div>
+          <svg viewBox="0 0 360 150" aria-hidden="true">
+            <g class="mis"><path fill="#2E6E6B" d="M16 50h14v60h-14zM44 50h14v60h-14zM72 50h14v60h-14zM100 50h14v60h-14zM128 50h14v60h-14zM156 50h14v60h-14zM184 50h14v60h-14zM212 50h14v60h-14zM240 50h14v60h-14zM268 50h14v60h-14zM296 50h14v60h-14zM324 50h14v60h-14z"/></g>
+            <path fill="none" stroke="#1F1D1A" stroke-width="3" d="M4 110h12v-60h14v60h14v-60h14v60h14v-60h14v60h14v-60h14v60h14v-60h14v60h14v-60h14v60h14v-60h14v60h14v-60h14v60h14v-60h14v60h14v-60h14v60h14v-60h14v60h14v-60h14v60h18"/>
+            <g font-family="Archivo, Arial, sans-serif" font-weight="700" font-size="12" fill="#1F1D1A" text-anchor="middle">
+              <text x="23" y="134">J</text><text x="51" y="134">F</text><text x="79" y="134">M</text><text x="107" y="134">A</text><text x="135" y="134">M</text><text x="163" y="134">J</text><text x="191" y="134">J</text><text x="219" y="134">A</text><text x="247" y="134">S</text><text x="275" y="134">O</text><text x="303" y="134">N</text><text x="331" y="134">D</text>
+            </g>
+          </svg>
+          <p>Steady, every month of the year.</p>
+        </div>
+
+        <ul class="care-list">
+          <li><strong>Hosting and security</strong><span>Your site stays online, fast and protected.</span></li>
+          <li><strong>Changes when you ask</strong><span>Text or email what you want changed. We do it.</span></li>
+          <li><strong>Looks right on every phone</strong><span>Checked on phones, tablets and computers.</span></li>
+          <li><strong>Found on Google</strong><span>Search basics and your Google Business profile, set up and kept current.</span></li>
+          <li><strong>Your web address</strong><span>We keep your domain renewed so it never lapses.</span></li>
+          <li><strong>A monthly results report</strong><span>Calls, quote requests and visitors, in plain English.</span></li>
+          <li><strong>A real person</strong><span>You talk to the person who built your site.</span></li>
+          <li><strong>Backups</strong><span>If anything ever breaks, we put it back.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANS -->
+  <section class="band" id="plans" aria-labelledby="plans-title">
+    <div class="wrap">
+      <div class="head">
+        <h2 class="d" id="plans-title">Simple pricing, shown up front</h2>
+        <p class="lede">No big bill to get started. Pick the size that fits your business.</p>
+      </div>
+
+      <div class="flow">
+        <div class="free">
+          <p class="step-l">First</p>
+
+          <p class="step-v">Free</p>
+          <p class="step-n">We build it and you see it.</p>
+        </div>
+        <div class="arrow" aria-hidden="true"><svg viewBox="0 0 36 20"><path d="M2 10H25" stroke="currentColor" stroke-width="2.5"/><path d="M24 4.5L34 10L24 15.5z" fill="currentColor"/></svg></div>
+        <div>
+          <p class="step-l">When you say yes</p>
+          <p class="step-v">$250</p>
+          <p class="step-n">One time, to launch your site and register your web address.</p>
+        </div>
+        <div class="arrow" aria-hidden="true"><svg viewBox="0 0 36 20"><path d="M2 10H25" stroke="currentColor" stroke-width="2.5"/><path d="M24 4.5L34 10L24 15.5z" fill="currentColor"/></svg></div>
+        <div>
+          <p class="step-l">Then monthly</p>
+          <p class="step-v">From $49</p>
+          <p class="step-n">First month free, then month to month. Cancel anytime.</p>
+        </div>
+      </div>
+
+      <div class="plans">
+        <div class="plan">
+          <h3>Starter</h3>
+          <p class="for">For a business that needs to look solid online.</p>
+          <p class="price"><b>$49</b><span>a month</span></p>
+          <dl>
+            <div><dt>Changes each month</dt><dd>Up to 2</dd></div>
+            <div><dt>Form</dt><dd>Contact form</dd></div>
+            <div><dt>Monthly results report</dt><dd>Included</dd></div>
+            <div><dt>Live results dashboard</dt><dd class="no">Not included</dd></div>
+
+          </dl>
+          <button class="btn ghost" type="button" data-plan="Starter">Choose Starter</button>
+        </div>
+
+        <div class="plan pick">
+          <span class="badge">Most<br>chosen</span>
+          <h3>Professional</h3>
+          <p class="for">For a business that wants calls and quote requests.</p>
+          <p class="price"><b>$79</b><span>a month</span></p>
+          <dl>
+            <div><dt>Changes each month</dt><dd>Up to 5</dd></div>
+            <div><dt>Form</dt><dd>Quote requests</dd></div>
+            <div><dt>Monthly results report</dt><dd>Included</dd></div>
+            <div><dt>Live results dashboard</dt><dd>Included</dd></div>
+            <div><dt>Also includes</dt><dd>One custom feature</dd></div>
+          </dl>
+          <button class="btn" type="button" data-plan="Professional">Choose Professional</button>
+        </div>
+
+        <div class="plan">
+          <h3>Complete</h3>
+          <p class="for">For a business that books or sells online.</p>
+          <p class="price"><b>$99</b><span>a month</span></p>
+          <dl>
+            <div><dt>Changes each month</dt><dd>Up to 10</dd></div>
+            <div><dt>Form</dt><dd>Booking or payments</dd></div>
+            <div><dt>Monthly results report</dt><dd>Included</dd></div>
+            <div><dt>Live results dashboard</dt><dd>Included</dd></div>
+            <div><dt>Also includes</dt><dd>A monthly check-in call</dd></div>
+          </dl>
+          <button class="btn ghost" type="button" data-plan="Complete">Choose Complete</button>
+        </div>
+      </div>
+      <p class="plans-note">Every plan: free preview, $250 to launch, first month free, then month to month. Not sure which size you need? Leave it blank in the form and we'll suggest one.</p>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section class="band" id="work" aria-labelledby="work-title">
+    <div class="wrap">
+      <div class="head">
+        <h2 class="d" id="work-title">Sites we've built</h2>
+        <p class="lede">Two recent projects. Click through and try them on your phone.</p>
+      </div>
+
+      <div class="work">
+        <article class="project">
+          <div class="cover c-teal" role="img" aria-label="Cover illustration: a box moves from one square to another.">
+            <div class="cover-top"><span class="roundel">A</span><span class="series">Affine</span></div>
+            <div class="art" aria-hidden="true">
+              <svg viewBox="0 0 200 170">
+                <rect x="28" y="62" width="52" height="52" fill="none" stroke="#EFE5CD" stroke-width="2" stroke-dasharray="5 4"/>
+                <rect x="128" y="70" width="52" height="52" fill="url(#dots)"/>
+                <g class="mis"><rect x="120" y="62" width="52" height="52" fill="#D8B86A"/></g>
+                <rect x="120" y="62" width="52" height="52" fill="none" stroke="#1F1D1A" stroke-width="2.5"/>
+                <path d="M120 88h52M146 62v10" stroke="#1F1D1A" stroke-width="2"/>
+                <path d="M86 88H112" stroke="#EFE5CD" stroke-width="2.5" marker-end="url(#ah-cream)"/>
+                <path d="M16 124H184" stroke="#EFE5CD" stroke-width="2"/>
+              </svg>
+            </div>
+            <h3>Lane &amp; Jaxon</h3>
+            <p class="sub">a moving company</p>
+          </div>
+          <div class="info">
+            <h3 class="d">Lane &amp; Jaxon Moving Co.</h3>
+            <p class="kind">A website for a local moving company</p>
+            <p>Built to make the business look established and to turn visitors into quote requests, with clear services and an easy way to get in touch.</p>
+            <a class="textlink" href="https://kruzp.github.io/LaneAndJaxonMovingCo/" target="_blank" rel="noopener">Visit the Lane &amp; Jaxon site</a>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="cover c-sea" role="img" aria-label="Cover illustration: a drone flies back and forth over a map grid.">
+            <div class="cover-top"><span class="roundel">B</span><span class="series">Affine</span></div>
+            <div class="art" aria-hidden="true">
+              <svg viewBox="0 0 200 170">
+                <path stroke="#EFE5CD" stroke-width="1" opacity=".6" d="M30 26V150M50 26V150M70 26V150M90 26V150M110 26V150M130 26V150M150 26V150M170 26V150M30 26H170M30 46H170M30 66H170M30 86H170M30 106H170M30 126H170M30 146H170"/>
+                <g class="mis"><path d="M30 36H170V56H30V76H170V96H30V116H170" fill="none" stroke="#D8B86A" stroke-width="4"/></g>
+                <circle cx="170" cy="116" r="9" fill="#2E6E6B" stroke="#1F1D1A" stroke-width="2.5"/>
+                <path d="M170 116h-7M170 116h7M170 116v-7M170 116v7" stroke="#1F1D1A" stroke-width="1.5"/>
+              </svg>
+            </div>
+            <h3>Flowstate Aerial</h3>
+            <p class="sub">volumetric measurement and photogrammetry</p>
+          </div>
+          <div class="info">
+            <h3 class="d">Flowstate Aerial</h3>
+            <p class="kind">A website for a drone survey company</p>
+            <p>Built to explain a technical service in plain words, with simple packages and a clear way to request a job.</p>
+            <a class="textlink" href="https://flowstateaerial.com/" target="_blank" rel="noopener">Visit the Flowstate Aerial site</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="band" id="about" aria-labelledby="about-title">
+    <div class="wrap about">
+      <div class="portrait photo">
+        <img src="images/kruz-pierce.jpg" alt="Kruz Pierce, founder of Affine Studio" width="600" height="600" loading="lazy" decoding="async">
+      </div>
+      <div class="info">
+        <h2 class="d" id="about-title">One person builds your site, start to finish.</h2>
+        <p>Hi, I'm Kruz Pierce. I started Affine because most local businesses do great work but have websites that don't show it, or no website at all. My goal is to bring your business to life with a website that truly represents your brand and makes you easier to find, and easier to love, for today's customers. I've always loved art, and that love has shown up differently over the years: first painting, then graphic design and photography. For the past two years my focus has been computer science, specifically creating beautiful, captivating websites. I've completed CS50, Harvard's introduction to computer science, and have been building ever since while I keep growing as a programmer. Ultimately, your website is an expression of my passion for creating: your site is the canvas, and my code is the brush.</p>
+        <p>I design and build every site myself. When you text with a change, I'm the one who answers.</p>
+        <p class="sign">Kruz Pierce, founder</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUESTIONS -->
+  <section class="band" id="questions" aria-labelledby="q-title">
+    <div class="wrap">
+      <div class="head">
+        <h2 class="d" id="q-title">Questions people ask</h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>Why not just build it myself?<span class="pm" aria-hidden="true"></span></summary>
+          <p>You can, and plenty of people start. The hard part is everything after: writing the words, making it look right on phones, getting found on Google, and keeping it working. We do all of it. Your part is answering a few questions.</p>
+        </details>
+        <details>
+          <summary>What if I don't like the preview?<span class="pm" aria-hidden="true"></span></summary>
+          <p>Then you don't pay anything. Tell us what's off and we'll change it, or walk away. We never ask for a card to show you a preview.</p>
+        </details>
+        <details>
+          <summary>Is there a contract?<span class="pm" aria-hidden="true"></span></summary>
+          <p>No. Your first month of care is free. After that it's month to month, with no yearly contract. Cancel anytime and your plan ends at the end of the month you've paid for.</p>
+        </details>
+        <details>
+          <summary>Do I own my website?<span class="pm" aria-hidden="true"></span></summary>
+          <p>Yes. Your business name, words, photos and web address are yours from day one. If you ever cancel, whenever that is, we hand your site over to you.</p>
+        </details>
+        <details>
+          <summary>What do I need to give you?<span class="pm" aria-hidden="true"></span></summary>
+          <p>Answers to our questions, your logo if you have one, and a few photos of your work. No photos yet? We'll help you with that.</p>
+        </details>
+        <details>
+          <summary>How fast are changes?<span class="pm" aria-hidden="true"></span></summary>
+          <p>Text or email what you want changed. Most changes are done within two business days.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- START -->
+  <section class="start" id="start" aria-labelledby="start-title">
+    <div class="band wrap">
+      <div class="head">
+        <h2 class="d" id="start-title">Get your free preview</h2>
+        <p class="lede">Answer these and we'll start building. No payment and no card needed.</p>
+      </div>
+
+      <form class="form" id="preview-form" action="https://formspree.io/f/xqppnnzb" method="POST" novalidate>
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+        <div class="field">
+          <label for="f-name">Your name</label>
+          <input id="f-name" name="name" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="f-biz">Business name</label>
+          <input id="f-biz" name="business" autocomplete="organization" required>
+        </div>
+        <div class="field full">
+          <label for="f-what">What does your business do?</label>
+          <textarea id="f-what" name="what" placeholder="For example: tree trimming and removal, mostly homes"></textarea>
+        </div>
+        <div class="field">
+          <label for="f-town">Town or area you serve</label>
+          <input id="f-town" name="town">
+        </div>
+        <div class="field">
+          <label for="f-site">Current website <span class="hint">(if you have one)</span></label>
+          <input id="f-site" name="site" inputmode="url">
+        </div>
+        <div class="field">
+          <label for="f-contact">Best phone or email to reach you</label>
+          <input id="f-contact" name="contact" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="f-plan">Plan <span class="hint">(optional)</span></label>
+          <select id="f-plan" name="plan">
+            <option value="">Not sure yet</option>
+            <option>Starter</option>
+            <option>Professional</option>
+            <option>Complete</option>
+          </select>
+        </div>
+        <p class="form-error" id="form-error" role="alert" hidden></p>
+        <div class="form-foot">
+          <button class="btn" type="submit">Send my answers</button>
+          <p class="form-note">No payment and no card. We'll reply within one business day.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Back to top">
+      <svg class="mark" aria-hidden="true"><use href="#mark"/></svg>
+      <span class="d">Affine</span>
+    </a>
+    <p>Websites for local service businesses.</p>
+    <p><a href="mailto:affinewebstudio@gmail.com" id="mail-link">affinewebstudio@gmail.com</a></p>
+    <p>© 2026 Affine Studio</p>
+  </div>
+</footer>
+
+<script src="js/main.js" defer></script>
+</body>
+</html>
