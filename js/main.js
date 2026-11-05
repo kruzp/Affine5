@@ -2,7 +2,7 @@
 (function(){
   // The preview form posts to Formspree, which emails the answers to affinewebstudio@gmail.com.
   var ENDPOINT = 'https://formspree.io/f/xqppnnzb';
-  var MAIL = 'affinewebstudio@gmail.com';
+  var MAIL = 'affinewebstudios@gmail.com';
 
   var form = document.getElementById('preview-form');
   var planSel = document.getElementById('f-plan');
