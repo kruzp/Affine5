@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Privacy · Affine Studio</title>
+<meta name="description" content="How Affine Studio collects and uses information.">
+<link rel="canonical" href="https://affinewebstudio.com/privacy.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<style>
+  .legal-head{padding-top:clamp(48px,7vw,96px);padding-bottom:clamp(28px,4vw,44px);border-bottom:3px solid var(--rule)}
+  .legal-head .series{display:flex;align-items:center;gap:12px;font-weight:700;font-size:14px;margin:0 0 18px}
+  .legal-head .roundel{width:44px;height:44px;border-radius:50%;background:var(--ink);color:var(--paper);display:grid;place-items:center;
+    font-family:var(--display);font-variation-settings:"wdth" 62;font-weight:800;font-size:22px}
+  .legal-head h1.d{font-size:clamp(3rem,7vw,5.6rem);margin:0 0 14px}
+  .legal-head .lede{max-width:36em}
+  .legal-head .meta{margin:16px 0 0;font-size:15px;color:var(--ink-soft)}
+  .legal{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:clamp(28px,5vw,72px);padding-top:clamp(36px,5vw,64px);padding-bottom:clamp(64px,8vw,110px)}
+  .toc{position:sticky;top:96px;align-self:start;font-size:15px}
+  .toc p{font-weight:700;margin:0 0 10px}
+  .toc ol{list-style:none;margin:0;padding:0;border-top:1.5px solid var(--rule)}
+  .toc li{border-bottom:1px solid var(--hair)}
+  .toc a{display:grid;grid-template-columns:34px 1fr;padding:8px 0;text-decoration:none;color:inherit}
+  .toc a:hover{color:var(--teal)}
+  .toc a span{font-family:var(--display);font-variation-settings:"wdth" 62;font-weight:800}
+  .legal article{max-width:42em}
+  .legal section{padding:0 0 26px;margin:0 0 26px;border-bottom:1px solid var(--hair);scroll-margin-top:96px}
+  .legal section:last-child{border-bottom:0}
+  .legal h2{display:flex;gap:14px;align-items:baseline;font-family:var(--display);font-variation-settings:"wdth" 70;font-weight:800;font-size:clamp(1.6rem,2.6vw,2.1rem);line-height:1.05;margin:0 0 14px}
+  .legal h2 .n{color:var(--teal);font-variation-settings:"wdth" 62;min-width:1.6em}
+  .legal p,.legal li{font-size:17.5px;line-height:1.6}
+  .legal ul{margin:0 0 1em;padding-left:1.2em}
+  .legal li{margin:0 0 .4em}
+  .legal .plain{font-family:var(--serif);font-style:italic;font-size:18px;border-left:4px solid var(--teal);padding:2px 0 2px 16px;margin:0 0 1em}
+  .legal table{border-collapse:collapse;width:100%;margin:0 0 1em;font-size:16px}
+  .legal th,.legal td{text-align:left;padding:9px 12px 9px 0;border-top:1.5px solid var(--rule)}
+  .legal th{font-size:14px}
+  @media (max-width:860px){.legal{grid-template-columns:1fr}.toc{position:static}}
+</style>
+<script>
+/* Light/dark switch. Follows the device setting until the visitor picks one, then remembers it. */
+(function(){
+  var KEY='affine-theme', root=document.documentElement;
+  try{var saved=localStorage.getItem(KEY); if(saved==='light'||saved==='dark') root.setAttribute('data-theme',saved);}catch(e){}
+  var mq=window.matchMedia?matchMedia('(prefers-color-scheme: dark)'):null;
+  function current(){return root.getAttribute('data-theme')||(mq&&mq.matches?'dark':'light')}
+  function paint(){
+    var t=current(), sw=document.querySelector('.theme-switch'); if(!sw)return;
+    sw.setAttribute('data-on',t);
+    sw.querySelectorAll('[data-theme-set]').forEach(function(b){b.setAttribute('aria-checked',b.getAttribute('data-theme-set')===t?'true':'false')});
+    var m=document.querySelector('meta[name="theme-color"]'); if(m)m.setAttribute('content',t==='dark'?'#1C1A17':'#ECE3CC');
+  }
+  document.addEventListener('DOMContentLoaded',function(){
+    var sw=document.querySelector('.theme-switch'); if(!sw)return;
+    sw.addEventListener('click',function(e){
+      var b=e.target.closest('[data-theme-set]'); if(!b)return;
+      var t=b.getAttribute('data-theme-set'); root.setAttribute('data-theme',t);
+      try{localStorage.setItem(KEY,t)}catch(err){}
+      paint();
+    });
+    sw.addEventListener('keydown',function(e){
+      if(e.key!=='ArrowLeft'&&e.key!=='ArrowRight')return; e.preventDefault();
+      var t=current()==='dark'?'light':'dark'; var b=sw.querySelector('[data-theme-set="'+t+'"]'); b.click(); b.focus();
+    });
+    if(mq&&mq.addEventListener)mq.addEventListener('change',paint);
+    paint();
+  });
+})();
+</script>
+</head>
+<body>
+<!-- shared print inks: halftone screens and arrowheads -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <pattern id="dots" width="6" height="6" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="1.5" fill="#1F1D1A"/></pattern>
+    <pattern id="dots-cream" width="6" height="6" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="1.4" fill="#EFE5CD"/></pattern>
+    <pattern id="dots-fine" width="4" height="4" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#1F1D1A"/></pattern>
+    <marker id="ah-cream" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#EFE5CD"/></marker>
+    <marker id="ah-ink" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#1F1D1A"/></marker>
+    <marker id="ah-mustard" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#D8B86A"/></marker>
+    <symbol id="mark" viewBox="0 0 40 40">
+      <circle cx="20" cy="20" r="19" fill="#2E6E6B"/>
+      <polygon points="9,29 22,29 31,11 18,11" fill="#1F1D1A"/>
+      <polygon points="9,29 22,29 22,11 9,11" fill="none" stroke="#EFE5CD" stroke-width="1.6" stroke-dasharray="2.4 2"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Affine Studio, home">
+      <svg class="mark" aria-hidden="true"><use href="#mark"/></svg>
+      <span class="d">Affine</span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html#how">How it works</a>
+      <a href="index.html#plans">Plans</a>
+      <a href="index.html#work">Work</a>
+      <a href="index.html#questions">Questions</a>
+      <div class="theme-switch" role="radiogroup" aria-label="Color theme" data-on="light">
+        <button type="button" role="radio" aria-checked="true" data-theme-set="light" aria-label="Light">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="4" fill="currentColor"/><path d="M10 1.5v2.5M10 16v2.5M1.5 10H4M16 10h2.5M4 4l1.8 1.8M14.2 14.2L16 16M4 16l1.8-1.8M14.2 5.8L16 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+        <button type="button" role="radio" aria-checked="false" data-theme-set="dark" aria-label="Dark">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M15.5 12.6A6.8 6.8 0 0 1 7.4 4.5a6.8 6.8 0 1 0 8.1 8.1z" fill="currentColor"/></svg>
+        </button>
+        <span class="thumb" aria-hidden="true"></span>
+      </div>
+      <a class="btn" href="index.html#start"><span class="long">Get my free preview</span><span class="short">Free preview</span></a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap legal-head">
+    <p class="series"><span class="roundel" aria-hidden="true">P</span>An Affine book · Privacy</p>
+    <h1 class="d">Your information, kept simple.</h1>
+    <p class="lede">What we collect, why, and how to ask us to delete it.</p>
+    <p class="meta">Effective November 5, 2026 · Affine Studio, Kelley, Iowa</p>
+  </div>
+  <div class="wrap legal">
+    <nav class="toc" aria-label="Contents">
+      <p>Contents</p>
+      <ol>
+      <li><a href="#collect"><span>1</span>What we collect</a></li>
+      <li><a href="#use"><span>2</span>How we use it</a></li>
+      <li><a href="#tools"><span>3</span>Services we use</a></li>
+      <li><a href="#clients"><span>4</span>Your website's visitors</a></li>
+      <li><a href="#keep"><span>5</span>How long we keep it</a></li>
+      <li><a href="#choices"><span>6</span>Your choices</a></li>
+      <li><a href="#contact"><span>7</span>Questions</a></li>
+      </ol>
+    </nav>
+    <article>
+    <section id="collect" aria-labelledby="collect-h">
+      <h2 id="collect-h"><span class="n">1</span>What we collect</h2>
+      <ul>
+        <li><b>Preview form:</b> the name, business details and phone or email you type in.</li>
+        <li><b>Payments:</b> your name, email, phone and billing details, collected by Stripe. We never see your full card number.</li>
+        <li><b>Visits to this site:</b> anonymous counts of pages viewed and where visitors came from.</li>
+      </ul>
+    </section>
+    <section id="use" aria-labelledby="use-h">
+      <h2 id="use-h"><span class="n">2</span>How we use it</h2>
+      <p>Only to build your preview, talk with you about your website, run your plan and send your monthly report. We don't sell or rent your information, and we don't send marketing email unless you ask for it.</p>
+    </section>
+    <section id="tools" aria-labelledby="tools-h">
+      <h2 id="tools-h"><span class="n">3</span>Services we use</h2>
+      <p>A few trusted services handle parts of our work, each under its own privacy policy:</p>
+      <ul>
+        <li><b>Formspree</b> delivers the preview form to our inbox.</li>
+        <li><b>Stripe</b> processes payments.</li>
+        <li><b>Cloudflare</b> hosts our client dashboard and handles its secure sign-in.</li>
+        <li><b>GitHub Pages</b> hosts this website.</li>
+      </ul>
+    </section>
+    <section id="clients" aria-labelledby="clients-h">
+      <h2 id="clients-h"><span class="n">4</span>Your website's visitors</h2>
+      <p>For clients on a care plan, we measure visits, calls and form requests on your website so we can report them to you. Those numbers are only shown to you, in your report or your private dashboard.</p>
+    </section>
+    <section id="keep" aria-labelledby="keep-h">
+      <h2 id="keep-h"><span class="n">5</span>How long we keep it</h2>
+      <p>Preview requests that don't become clients are deleted within 12 months. Client records are kept while you're a client, and as long as the law requires for business and tax records after that.</p>
+    </section>
+    <section id="choices" aria-labelledby="choices-h">
+      <h2 id="choices-h"><span class="n">6</span>Your choices</h2>
+      <p>Email us to see, correct or delete the information we hold about you, and we'll take care of it within 30 days.</p>
+    </section>
+    <section id="contact" aria-labelledby="contact-h">
+      <h2 id="contact-h"><span class="n">7</span>Questions</h2>
+      <p>Email <a href="mailto:affinewebstudios@gmail.com">affinewebstudios@gmail.com</a>.</p>
+    </section>
+    </article>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Affine Studio, home">
+      <svg class="mark" aria-hidden="true"><use href="#mark"/></svg>
+      <span class="d">Affine</span>
+    </a>
+    <p>Websites for local service businesses.</p>
+    <p><a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a></p>
+    <p><a href="mailto:affinewebstudios@gmail.com">affinewebstudios@gmail.com</a></p>
+    <p>© 2026 Affine Studio</p>
+  </div>
+</footer>
+</body>
+</html>

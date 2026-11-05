@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Terms · Affine Studio</title>
+<meta name="description" content="The plain-English terms for Affine Studio websites and monthly care plans.">
+<link rel="canonical" href="https://affinewebstudio.com/terms.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<style>
+  .legal-head{padding-top:clamp(48px,7vw,96px);padding-bottom:clamp(28px,4vw,44px);border-bottom:3px solid var(--rule)}
+  .legal-head .series{display:flex;align-items:center;gap:12px;font-weight:700;font-size:14px;margin:0 0 18px}
+  .legal-head .roundel{width:44px;height:44px;border-radius:50%;background:var(--ink);color:var(--paper);display:grid;place-items:center;
+    font-family:var(--display);font-variation-settings:"wdth" 62;font-weight:800;font-size:22px}
+  .legal-head h1.d{font-size:clamp(3rem,7vw,5.6rem);margin:0 0 14px}
+  .legal-head .lede{max-width:36em}
+  .legal-head .meta{margin:16px 0 0;font-size:15px;color:var(--ink-soft)}
+  .legal{display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:clamp(28px,5vw,72px);padding-top:clamp(36px,5vw,64px);padding-bottom:clamp(64px,8vw,110px)}
+  .toc{position:sticky;top:96px;align-self:start;font-size:15px}
+  .toc p{font-weight:700;margin:0 0 10px}
+  .toc ol{list-style:none;margin:0;padding:0;border-top:1.5px solid var(--rule)}
+  .toc li{border-bottom:1px solid var(--hair)}
+  .toc a{display:grid;grid-template-columns:34px 1fr;padding:8px 0;text-decoration:none;color:inherit}
+  .toc a:hover{color:var(--teal)}
+  .toc a span{font-family:var(--display);font-variation-settings:"wdth" 62;font-weight:800}
+  .legal article{max-width:42em}
+  .legal section{padding:0 0 26px;margin:0 0 26px;border-bottom:1px solid var(--hair);scroll-margin-top:96px}
+  .legal section:last-child{border-bottom:0}
+  .legal h2{display:flex;gap:14px;align-items:baseline;font-family:var(--display);font-variation-settings:"wdth" 70;font-weight:800;font-size:clamp(1.6rem,2.6vw,2.1rem);line-height:1.05;margin:0 0 14px}
+  .legal h2 .n{color:var(--teal);font-variation-settings:"wdth" 62;min-width:1.6em}
+  .legal p,.legal li{font-size:17.5px;line-height:1.6}
+  .legal ul{margin:0 0 1em;padding-left:1.2em}
+  .legal li{margin:0 0 .4em}
+  .legal .plain{font-family:var(--serif);font-style:italic;font-size:18px;border-left:4px solid var(--teal);padding:2px 0 2px 16px;margin:0 0 1em}
+  .legal table{border-collapse:collapse;width:100%;margin:0 0 1em;font-size:16px}
+  .legal th,.legal td{text-align:left;padding:9px 12px 9px 0;border-top:1.5px solid var(--rule)}
+  .legal th{font-size:14px}
+  @media (max-width:860px){.legal{grid-template-columns:1fr}.toc{position:static}}
+</style>
+<script>
+/* Light/dark switch. Follows the device setting until the visitor picks one, then remembers it. */
+(function(){
+  var KEY='affine-theme', root=document.documentElement;
+  try{var saved=localStorage.getItem(KEY); if(saved==='light'||saved==='dark') root.setAttribute('data-theme',saved);}catch(e){}
+  var mq=window.matchMedia?matchMedia('(prefers-color-scheme: dark)'):null;
+  function current(){return root.getAttribute('data-theme')||(mq&&mq.matches?'dark':'light')}
+  function paint(){
+    var t=current(), sw=document.querySelector('.theme-switch'); if(!sw)return;
+    sw.setAttribute('data-on',t);
+    sw.querySelectorAll('[data-theme-set]').forEach(function(b){b.setAttribute('aria-checked',b.getAttribute('data-theme-set')===t?'true':'false')});
+    var m=document.querySelector('meta[name="theme-color"]'); if(m)m.setAttribute('content',t==='dark'?'#1C1A17':'#ECE3CC');
+  }
+  document.addEventListener('DOMContentLoaded',function(){
+    var sw=document.querySelector('.theme-switch'); if(!sw)return;
+    sw.addEventListener('click',function(e){
+      var b=e.target.closest('[data-theme-set]'); if(!b)return;
+      var t=b.getAttribute('data-theme-set'); root.setAttribute('data-theme',t);
+      try{localStorage.setItem(KEY,t)}catch(err){}
+      paint();
+    });
+    sw.addEventListener('keydown',function(e){
+      if(e.key!=='ArrowLeft'&&e.key!=='ArrowRight')return; e.preventDefault();
+      var t=current()==='dark'?'light':'dark'; var b=sw.querySelector('[data-theme-set="'+t+'"]'); b.click(); b.focus();
+    });
+    if(mq&&mq.addEventListener)mq.addEventListener('change',paint);
+    paint();
+  });
+})();
+</script>
+</head>
+<body>
+<!-- shared print inks: halftone screens and arrowheads -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <pattern id="dots" width="6" height="6" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="1.5" fill="#1F1D1A"/></pattern>
+    <pattern id="dots-cream" width="6" height="6" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="1.4" fill="#EFE5CD"/></pattern>
+    <pattern id="dots-fine" width="4" height="4" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#1F1D1A"/></pattern>
+    <marker id="ah-cream" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#EFE5CD"/></marker>
+    <marker id="ah-ink" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#1F1D1A"/></marker>
+    <marker id="ah-mustard" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#D8B86A"/></marker>
+    <symbol id="mark" viewBox="0 0 40 40">
+      <circle cx="20" cy="20" r="19" fill="#2E6E6B"/>
+      <polygon points="9,29 22,29 31,11 18,11" fill="#1F1D1A"/>
+      <polygon points="9,29 22,29 22,11 9,11" fill="none" stroke="#EFE5CD" stroke-width="1.6" stroke-dasharray="2.4 2"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Affine Studio, home">
+      <svg class="mark" aria-hidden="true"><use href="#mark"/></svg>
+      <span class="d">Affine</span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html#how">How it works</a>
+      <a href="index.html#plans">Plans</a>
+      <a href="index.html#work">Work</a>
+      <a href="index.html#questions">Questions</a>
+      <div class="theme-switch" role="radiogroup" aria-label="Color theme" data-on="light">
+        <button type="button" role="radio" aria-checked="true" data-theme-set="light" aria-label="Light">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="4" fill="currentColor"/><path d="M10 1.5v2.5M10 16v2.5M1.5 10H4M16 10h2.5M4 4l1.8 1.8M14.2 14.2L16 16M4 16l1.8-1.8M14.2 5.8L16 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </button>
+        <button type="button" role="radio" aria-checked="false" data-theme-set="dark" aria-label="Dark">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M15.5 12.6A6.8 6.8 0 0 1 7.4 4.5a6.8 6.8 0 1 0 8.1 8.1z" fill="currentColor"/></svg>
+        </button>
+        <span class="thumb" aria-hidden="true"></span>
+      </div>
+      <a class="btn" href="index.html#start"><span class="long">Get my free preview</span><span class="short">Free preview</span></a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap legal-head">
+    <p class="series"><span class="roundel" aria-hidden="true">T</span>An Affine book · Terms</p>
+    <h1 class="d">The terms, in plain English.</h1>
+    <p class="lede">What you get, what it costs, how to cancel, and what happens to your site if you ever leave.</p>
+    <p class="meta">Effective November 5, 2026 · Affine Studio, Kelley, Iowa</p>
+  </div>
+  <div class="wrap legal">
+    <nav class="toc" aria-label="Contents">
+      <p>Contents</p>
+      <ol>
+      <li><a href="#who"><span>1</span>Who we are</a></li>
+      <li><a href="#preview"><span>2</span>The free preview</a></li>
+      <li><a href="#launch"><span>3</span>The $250 launch fee</a></li>
+      <li><a href="#plans"><span>4</span>Monthly care plans</a></li>
+      <li><a href="#cancel"><span>5</span>Cancelling</a></li>
+      <li><a href="#changes"><span>6</span>What counts as a change</a></li>
+      <li><a href="#own"><span>7</span>Your website is yours</a></li>
+      <li><a href="#payments"><span>8</span>Missed payments</a></li>
+      <li><a href="#you"><span>9</span>Your part</a></li>
+      <li><a href="#promise"><span>10</span>What we can't promise</a></li>
+      <li><a href="#liability"><span>11</span>Limits of our responsibility</a></li>
+      <li><a href="#updates"><span>12</span>Changes to these terms</a></li>
+      <li><a href="#law"><span>13</span>Iowa law</a></li>
+      <li><a href="#contact"><span>14</span>Questions</a></li>
+      </ol>
+    </nav>
+    <article>
+    <section id="who" aria-labelledby="who-h">
+      <h2 id="who-h"><span class="n">1</span>Who we are</h2>
+      <p>Affine Studio ("Affine", "we", "us") is a web design business run by Kruz Pierce, a sole proprietor in Kelley, Iowa. "You" means the business that asks us for a preview or buys a plan. By saying yes to your site and paying the launch fee, you agree to these terms.</p>
+    </section>
+    <section id="preview" aria-labelledby="preview-h">
+      <h2 id="preview-h"><span class="n">2</span>The free preview</h2>
+      <p class="plain">You owe nothing to see your site.</p>
+      <p>After you answer our questions, we build a preview of your website and send you a private link. The preview is free, with no card and no obligation. If you don't want it, you can walk away. We won't publish a preview or use your business details anywhere else.</p>
+    </section>
+    <section id="launch" aria-labelledby="launch-h">
+      <h2 id="launch-h"><span class="n">3</span>The $250 launch fee</h2>
+      <p>When you say yes, you pay a one-time launch fee of $250. It covers finishing and launching your site and registering your web address (domain) for its first year.</p>
+      <p>The launch fee is non-refundable once your site is live. If we can't launch your site for a reason on our side, we refund it in full.</p>
+    </section>
+    <section id="plans" aria-labelledby="plans-h">
+      <h2 id="plans-h"><span class="n">4</span>Monthly care plans</h2>
+      <p class="plain">First month free, then month to month. No contract.</p>
+      <table>
+        <thead><tr><th>Plan</th><th>Price</th><th>Changes each month</th></tr></thead>
+        <tbody>
+          <tr><td>Starter</td><td>$49 a month</td><td>Up to 2</td></tr>
+          <tr><td>Professional</td><td>$79 a month</td><td>Up to 5</td></tr>
+          <tr><td>Complete</td><td>$99 a month</td><td>Up to 10</td></tr>
+        </tbody>
+      </table>
+      <p>Your first month of care is free. Your card is charged automatically for your plan 30 days after you pay the launch fee, then every month after that, until you cancel. Payments are processed by Stripe; we never see or store your full card number.</p>
+      <p>If we ever change our prices, we'll email you at least 30 days before the change affects you.</p>
+    </section>
+    <section id="cancel" aria-labelledby="cancel-h">
+      <h2 id="cancel-h"><span class="n">5</span>Cancelling</h2>
+      <p>You can cancel anytime, for any reason, with no fee. Use the billing link in your Stripe receipt, or email us and we'll do it for you.</p>
+      <ul>
+        <li>Your plan runs to the end of the month you've already paid for, then stops.</li>
+        <li>We don't refund partial months.</li>
+        <li>If you cancel during your free first month, you're never charged a monthly fee.</li>
+      </ul>
+    </section>
+    <section id="changes" aria-labelledby="changes-h">
+      <h2 id="changes-h"><span class="n">6</span>What counts as a change</h2>
+      <p>A change is an update to your existing site that takes about 30 minutes or less, like new text, photos, hours, prices or a new service on an existing page. Unused changes don't carry over to the next month.</p>
+      <p>Bigger work, like new pages or new features, isn't included. We'll always quote it first, and nothing is charged unless you agree.</p>
+    </section>
+    <section id="own" aria-labelledby="own-h">
+      <h2 id="own-h"><span class="n">7</span>Your website is yours</h2>
+      <p class="plain">You own your business name, words, logo, photos and web address from day one.</p>
+      <p>While you're on a plan, we manage your domain and hosting for you. If you cancel, whenever that is, we'll hand your site over:</p>
+      <ul>
+        <li>We send you your website files within 14 days.</li>
+        <li>We transfer your domain to you, or to whoever you choose.</li>
+        <li>Hosting through us ends when your last paid month ends.</li>
+      </ul>
+      <p>Some parts of a site, like fonts or open-source code, come with their own licenses. We'll only use parts that you're free to keep using.</p>
+    </section>
+    <section id="payments" aria-labelledby="payments-h">
+      <h2 id="payments-h"><span class="n">8</span>Missed payments</h2>
+      <p>If a monthly payment fails, Stripe retries it and emails you. If it's still unpaid 14 days after it was due, we may pause your site until it's paid. If it's unpaid after 30 days, your plan ends.</p>
+      <p>Even then, we'll still send you your website files. We transfer your domain once any balance is paid.</p>
+    </section>
+    <section id="you" aria-labelledby="you-h">
+      <h2 id="you-h"><span class="n">9</span>Your part</h2>
+      <ul>
+        <li>Give us accurate information about your business.</li>
+        <li>Only send us photos, logos and text you have the right to use.</li>
+        <li>You're responsible for what your business offers and claims on your site, and for any licenses your business needs.</li>
+      </ul>
+    </section>
+    <section id="promise" aria-labelledby="promise-h">
+      <h2 id="promise-h"><span class="n">10</span>What we can't promise</h2>
+      <p>We set your site up so people can find it on Google, but nobody can guarantee a search ranking or a number of calls. Our hosting providers are very reliable, but outages can happen; when something breaks, we fix it as quickly as we can.</p>
+    </section>
+    <section id="liability" aria-labelledby="liability-h">
+      <h2 id="liability-h"><span class="n">11</span>Limits of our responsibility</h2>
+      <p>To the extent the law allows, our total responsibility for any claim related to our work is limited to what you paid us in the 3 months before the claim. We aren't responsible for indirect losses, like lost profits or lost business.</p>
+    </section>
+    <section id="updates" aria-labelledby="updates-h">
+      <h2 id="updates-h"><span class="n">12</span>Changes to these terms</h2>
+      <p>If we update these terms, we'll post the new version here with a new date. If a change affects active clients in a meaningful way, we'll email you first.</p>
+    </section>
+    <section id="law" aria-labelledby="law-h">
+      <h2 id="law-h"><span class="n">13</span>Iowa law</h2>
+      <p>These terms are governed by the laws of the State of Iowa.</p>
+    </section>
+    <section id="contact" aria-labelledby="contact-h">
+      <h2 id="contact-h"><span class="n">14</span>Questions</h2>
+      <p>Email <a href="mailto:affinewebstudios@gmail.com">affinewebstudios@gmail.com</a>. You'll get an answer from the person who built your site.</p>
+    </section>
+    </article>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="Affine Studio, home">
+      <svg class="mark" aria-hidden="true"><use href="#mark"/></svg>
+      <span class="d">Affine</span>
+    </a>
+    <p>Websites for local service businesses.</p>
+    <p><a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a></p>
+    <p><a href="mailto:affinewebstudios@gmail.com">affinewebstudios@gmail.com</a></p>
+    <p>© 2026 Affine Studio</p>
+  </div>
+</footer>
+</body>
+</html>
